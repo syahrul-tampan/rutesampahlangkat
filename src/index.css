@@ -1,88 +1,109 @@
+@import "leaflet/dist/leaflet.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Environmental GIS Design System - Langkat Waste Mapping */
+/* Colors: Forest Green + Ocean Blue theme */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Forest Green Primary */
+    --background: 120 20% 98%;
+    --foreground: 150 40% 10%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 150 40% 10%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 150 40% 10%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Deep Forest Green */
+    --primary: 152 60% 28%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Light Sage */
+    --secondary: 140 30% 94%;
+    --secondary-foreground: 152 60% 20%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Soft Earth */
+    --muted: 120 15% 93%;
+    --muted-foreground: 140 15% 40%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Ocean Blue Accent */
+    --accent: 199 89% 48%;
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    /* Warning/Destructive */
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 140 20% 88%;
+    --input: 140 20% 88%;
+    --ring: 152 60% 28%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
+
+    /* Status Colors */
+    --status-pending: 0 84% 60%;
+    --status-process: 45 93% 47%;
+    --status-complete: 142 71% 45%;
+
+    /* Volume Colors */
+    --volume-small: 199 89% 48%;
+    --volume-medium: 45 93% 47%;
+    --volume-large: 0 72% 51%;
+
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(152 60% 28%) 0%, hsl(199 89% 38%) 100%);
+    --gradient-card: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(140 30% 98%) 100%);
+    --gradient-overlay: linear-gradient(180deg, transparent 0%, hsl(150 40% 10% / 0.8) 100%);
+
+    /* Shadows */
+    --shadow-soft: 0 4px 20px -2px hsl(152 60% 28% / 0.15);
+    --shadow-card: 0 8px 30px -4px hsl(152 60% 28% / 0.12);
+    --shadow-elevated: 0 20px 50px -12px hsl(152 60% 28% / 0.2);
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    --background: 150 30% 6%;
+    --foreground: 120 20% 95%;
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --card: 150 25% 10%;
+    --card-foreground: 120 20% 95%;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 150 25% 10%;
+    --popover-foreground: 120 20% 95%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 152 50% 45%;
+    --primary-foreground: 150 40% 10%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 150 20% 15%;
+    --secondary-foreground: 120 20% 90%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 150 20% 15%;
+    --muted-foreground: 140 15% 60%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 199 80% 55%;
+    --accent-foreground: 150 40% 10%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 45%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
+    --border: 150 15% 18%;
+    --input: 150 15% 18%;
+    --ring: 152 50% 45%;
+
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -100,6 +121,142 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-muted rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-primary/30 rounded-full hover:bg-primary/50 transition-colors;
+  }
+}
+
+@layer components {
+  /* Status badge variants */
+  .status-pending {
+    @apply bg-red-500/10 text-red-600 border-red-500/20;
+  }
+
+  .status-process {
+    @apply bg-yellow-500/10 text-yellow-600 border-yellow-500/20;
+  }
+
+  .status-complete {
+    @apply bg-green-500/10 text-green-600 border-green-500/20;
+  }
+
+  /* Volume badge variants */
+  .volume-small {
+    @apply bg-blue-500/10 text-blue-600;
+  }
+
+  .volume-medium {
+    @apply bg-yellow-500/10 text-yellow-600;
+  }
+
+  .volume-large {
+    @apply bg-red-500/10 text-red-600;
+  }
+
+  /* Map marker pulse animation */
+  .marker-pulse {
+    animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes pulse-ring {
+    0%, 100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.5;
+      transform: scale(1.1);
+    }
+  }
+
+  /* Glass morphism effect */
+  .glass {
+    @apply bg-white/80 backdrop-blur-lg border border-white/20;
+  }
+
+  /* Hero gradient background */
+  .hero-gradient {
+    background: var(--gradient-hero);
+  }
+
+  /* Card with shadow */
+  .card-elevated {
+    box-shadow: var(--shadow-card);
+  }
+
+  /* Leaflet custom styles */
+  .leaflet-container {
+    @apply rounded-xl;
+    font-family: inherit;
+  }
+
+  .leaflet-popup-content-wrapper {
+    @apply rounded-xl shadow-lg border-0;
+    box-shadow: var(--shadow-elevated);
+  }
+
+  .leaflet-popup-content {
+    @apply m-0 p-0;
+  }
+
+  .leaflet-popup-tip {
+    @apply bg-white;
+  }
+
+  /* Custom marker icons */
+  .custom-marker {
+    @apply flex items-center justify-center rounded-full shadow-lg;
+    width: 32px;
+    height: 32px;
+  }
+
+  .custom-marker.pending {
+    @apply bg-red-500;
+  }
+
+  .custom-marker.process {
+    @apply bg-yellow-500;
+  }
+
+  .custom-marker.complete {
+    @apply bg-green-500;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-hero);
   }
 }
