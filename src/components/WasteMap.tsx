@@ -132,7 +132,7 @@ export function WasteMap({
         center={defaultCenter}
         zoom={12}
         className="h-full w-full min-h-[400px]"
-        whenReady={() => setMapReady(true)}
+        ref={() => setMapReady(true)}
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
