@@ -8,7 +8,6 @@ import { Navbar } from "@/components/Navbar";
 import Index from "./pages/Index";
 import MapPage from "./pages/MapPage";
 import LocationList from "./pages/LocationList";
-import About from "./pages/About";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -26,7 +25,6 @@ const App = () => (
               <Route path="/" element={<Index />} />
               <Route path="/peta" element={<MapPage />} />
               <Route path="/lokasi" element={<LocationList />} />
-              <Route path="/tentang" element={<About />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>

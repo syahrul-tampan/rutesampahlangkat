@@ -1,6 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { MapPin, List, Info, Home, Shield, Menu, X } from 'lucide-react';
+import { MapPin, List, Home, Shield, Menu, X } from 'lucide-react';
 import { useState } from 'react';
 import { useWaste } from '@/contexts/WasteContext';
 import { Button } from '@/components/ui/button';
@@ -10,7 +10,6 @@ const navItems = [
   { to: '/', label: 'Beranda', icon: Home },
   { to: '/peta', label: 'Peta Realtime', icon: MapPin },
   { to: '/lokasi', label: 'Daftar Lokasi', icon: List },
-  { to: '/tentang', label: 'Tentang', icon: Info },
 ];
 
 export function Navbar() {
