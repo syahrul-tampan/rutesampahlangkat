@@ -1,8 +1,8 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { MapPin, List, Home, Shield, Menu, X } from 'lucide-react';
+import { MapPin, List, Home, Shield, Menu, X, LogOut, Loader2 } from 'lucide-react';
 import { useState } from 'react';
-import { useWaste } from '@/contexts/WasteContext';
+import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
@@ -14,8 +14,17 @@ const navItems = [
 
 export function Navbar() {
   const location = useLocation();
-  const { isAdmin, setIsAdmin } = useWaste();
+  const navigate = useNavigate();
+  const { user, isAdmin, isLoading, signOut } = useAuth();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const handleAuthClick = () => {
+    if (user) {
+      signOut();
+    } else {
+      navigate('/login');
+    }
+  };
 
   return (
     <nav className="sticky top-0 z-50 glass border-b border-border/50">
@@ -56,22 +65,41 @@ export function Navbar() {
             })}
           </div>
 
-          {/* Admin Toggle & Mobile Menu */}
+          {/* Auth Button & Mobile Menu */}
           <div className="flex items-center gap-2">
-            <Button
-              variant={isAdmin ? "default" : "outline"}
-              size="sm"
-              onClick={() => setIsAdmin(!isAdmin)}
-              className={cn(
-                "gap-2 transition-all",
-                isAdmin && "bg-primary hover:bg-primary/90"
-              )}
-            >
-              <Shield className="w-4 h-4" />
-              <span className="hidden sm:inline">
-                {isAdmin ? 'Mode Admin' : 'Login Admin'}
-              </span>
-            </Button>
+            {isLoading ? (
+              <Button variant="outline" size="sm" disabled>
+                <Loader2 className="w-4 h-4 animate-spin" />
+              </Button>
+            ) : user ? (
+              <div className="flex items-center gap-2">
+                {isAdmin && (
+                  <span className="hidden sm:flex items-center gap-1 text-xs font-medium text-primary bg-primary/10 px-2 py-1 rounded-full">
+                    <Shield className="w-3 h-3" />
+                    Admin
+                  </span>
+                )}
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={handleAuthClick}
+                  className="gap-2"
+                >
+                  <LogOut className="w-4 h-4" />
+                  <span className="hidden sm:inline">Keluar</span>
+                </Button>
+              </div>
+            ) : (
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={handleAuthClick}
+                className="gap-2"
+              >
+                <Shield className="w-4 h-4" />
+                <span className="hidden sm:inline">Login Admin</span>
+              </Button>
+            )}
 
             {/* Mobile Menu Button */}
             <Button

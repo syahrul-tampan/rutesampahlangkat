@@ -2,11 +2,11 @@ import React, { createContext, useContext, useState, useEffect, useCallback } fr
 import { WasteLocation, WasteStatus, WasteVolume } from '@/types/waste';
 import { initialWasteLocations } from '@/data/wasteLocations';
 import { toast } from 'sonner';
+import { useAuth } from '@/contexts/AuthContext';
 
 interface WasteContextType {
   locations: WasteLocation[];
   isAdmin: boolean;
-  setIsAdmin: (value: boolean) => void;
   addLocation: (location: Omit<WasteLocation, 'id' | 'lastUpdated'>) => void;
   updateLocation: (id: string, updates: Partial<WasteLocation>) => void;
   deleteLocation: (id: string) => void;
@@ -27,8 +27,8 @@ interface WasteContextType {
 const WasteContext = createContext<WasteContextType | undefined>(undefined);
 
 export function WasteProvider({ children }: { children: React.ReactNode }) {
+  const { isAdmin } = useAuth();
   const [locations, setLocations] = useState<WasteLocation[]>(initialWasteLocations);
-  const [isAdmin, setIsAdmin] = useState(false);
   const [lastUpdate, setLastUpdate] = useState(new Date());
 
   // Simulate realtime updates every 30 seconds
@@ -127,7 +127,6 @@ export function WasteProvider({ children }: { children: React.ReactNode }) {
       value={{
         locations,
         isAdmin,
-        setIsAdmin,
         addLocation,
         updateLocation,
         deleteLocation,
