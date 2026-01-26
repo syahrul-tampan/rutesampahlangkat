@@ -31,33 +31,8 @@ export function WasteProvider({ children }: { children: React.ReactNode }) {
   const [locations, setLocations] = useState<WasteLocation[]>(initialWasteLocations);
   const [lastUpdate, setLastUpdate] = useState(new Date());
 
-  // Simulate realtime updates every 30 seconds
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setLocations(prev => {
-        const updated = [...prev];
-        // Randomly update 1-3 locations
-        const numUpdates = Math.floor(Math.random() * 3) + 1;
-        for (let i = 0; i < numUpdates; i++) {
-          const randomIndex = Math.floor(Math.random() * updated.length);
-          const statuses: WasteStatus[] = ['pending', 'process', 'complete'];
-          const newStatus = statuses[Math.floor(Math.random() * statuses.length)];
-          
-          if (updated[randomIndex].status !== newStatus) {
-            updated[randomIndex] = {
-              ...updated[randomIndex],
-              status: newStatus,
-              lastUpdated: new Date(),
-            };
-          }
-        }
-        return updated;
-      });
-      setLastUpdate(new Date());
-    }, 30000);
-
-    return () => clearInterval(interval);
-  }, []);
+  // Status changes are now manual-only (admin controlled)
+  // No automatic/simulated updates
 
   const addLocation = useCallback((location: Omit<WasteLocation, 'id' | 'lastUpdated'>) => {
     const newLocation: WasteLocation = {
