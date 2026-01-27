@@ -35,6 +35,48 @@ export type Database = {
         }
         Relationships: []
       }
+      waste_locations: {
+        Row: {
+          address: string
+          created_at: string
+          google_maps_link: string | null
+          id: string
+          last_updated: string
+          latitude: number
+          longitude: number
+          name: string
+          region: string
+          status: string
+          volume: string
+        }
+        Insert: {
+          address: string
+          created_at?: string
+          google_maps_link?: string | null
+          id?: string
+          last_updated?: string
+          latitude: number
+          longitude: number
+          name: string
+          region: string
+          status?: string
+          volume?: string
+        }
+        Update: {
+          address?: string
+          created_at?: string
+          google_maps_link?: string | null
+          id?: string
+          last_updated?: string
+          latitude?: number
+          longitude?: number
+          name?: string
+          region?: string
+          status?: string
+          volume?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
