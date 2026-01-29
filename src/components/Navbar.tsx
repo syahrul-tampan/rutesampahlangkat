@@ -1,14 +1,15 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { MapPin, List, Home, Shield, Menu, X, LogOut, Loader2 } from 'lucide-react';
+import { List, Home, Shield, Menu, X, LogOut, Loader2, Map } from 'lucide-react';
 import { useState } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import logoDlh from '@/assets/logo-dlh.png';
 
 const navItems = [
   { to: '/', label: 'Beranda', icon: Home },
-  { to: '/peta', label: 'Peta Realtime', icon: MapPin },
+  { to: '/peta', label: 'Peta Realtime', icon: Map },
   { to: '/lokasi', label: 'Daftar Lokasi', icon: List },
 ];
 
@@ -31,10 +32,12 @@ export function Navbar() {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 group">
-            <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center shadow-soft group-hover:scale-105 transition-transform">
-              <MapPin className="w-5 h-5 text-primary-foreground" />
-            </div>
+          <Link to="/" className="flex items-center gap-3 group">
+            <img 
+              src={logoDlh} 
+              alt="Logo DLH" 
+              className="w-10 h-10 object-contain group-hover:scale-105 transition-transform"
+            />
             <div className="hidden sm:block">
               <span className="font-bold text-foreground">Peta Sampah</span>
               <span className="block text-xs text-muted-foreground">Kabupaten Langkat</span>

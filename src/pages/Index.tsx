@@ -5,6 +5,8 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { useWaste } from '@/contexts/WasteContext';
 import { StatsGrid } from '@/components/StatsCard';
+import heroBg from '@/assets/hero-bg.webp';
+import logoDlh from '@/assets/logo-dlh.png';
 
 const features = [
   {
@@ -35,8 +37,15 @@ export default function Index() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative overflow-hidden hero-gradient py-20 lg:py-32">
-        {/* Background Pattern */}
+      <section className="relative overflow-hidden py-20 lg:py-32">
+        {/* Background Image */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: `url(${heroBg})` }}
+        />
+        {/* Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-primary/80 via-primary/70 to-primary/90" />
+        {/* Decorative Pattern */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-20 left-10 w-72 h-72 bg-white rounded-full blur-3xl" />
           <div className="absolute bottom-20 right-10 w-96 h-96 bg-white rounded-full blur-3xl" />
@@ -186,10 +195,12 @@ export default function Index() {
       <footer className="py-8 border-t border-border/50">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-                <MapPin className="w-4 h-4 text-primary-foreground" />
-              </div>
+            <div className="flex items-center gap-3">
+              <img 
+                src={logoDlh} 
+                alt="Logo DLH" 
+                className="w-10 h-10 object-contain"
+              />
               <div>
                 <span className="font-semibold text-foreground">Peta Sampah Langkat</span>
                 <p className="text-xs text-muted-foreground">Sistem Informasi Geografis</p>
