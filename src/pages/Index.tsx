@@ -207,7 +207,7 @@ export default function Index() {
               </div>
             </div>
             <p className="text-sm text-muted-foreground">
-              © 2024 Proyek Mata Kuliah - Pemetaan Lokasi Sampah Berbasis Web
+              © 2026 Proyek Kerja Praktek - Monitoring dan Pemetaan Lokasi Sampah Berbasis Web
             </p>
           </div>
         </div>
